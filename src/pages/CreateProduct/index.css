@@ -1,0 +1,6 @@
+.create-product {
+    display: flex;
+    justify-content:center;
+    flex-direction: column; 
+    width: 600px;
+  }

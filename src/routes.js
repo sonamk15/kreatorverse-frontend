@@ -1,22 +1,22 @@
 import { Navigate } from "react-router-dom";
-import MainLayout from "./component/MainLayout";
-import AuthLayout from "./component/AuthLayout";
-import NotFound from "./pages/NotFound";
-import Product from "./pages/Product";
 import Login from "./pages/Auth/Login";
+import NotFound from "./pages/NotFound";
+
 const routes = (authToken, role) => [
   {
     path: "/",
     element: authToken ? (
-      <Navigate to="/app/dashboard" replace />
+      <Navigate to="/dashboard/product" replace />
     ) : (
       <Navigate to="/login" replace />
     ),
   },
   {
     path: "/login",
-    element: <Login />
+    element: <Login />,
   },
+  { path: '/404', element: <NotFound /> },
+  { path: '*', element: <Navigate to="/404" /> }
 ];
 
 export default routes;

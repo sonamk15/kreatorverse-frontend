@@ -1,0 +1,17 @@
+.list-product {
+  display: flex;
+  flex-direction: column;
+}
+
+.action-btn {
+    font-size: 24px;
+    text-align: center;
+}
+
+.dn-btn {
+    color: red;
+}
+
+.wr-btn {
+    color: yellow;
+}

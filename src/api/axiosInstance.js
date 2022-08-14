@@ -1,6 +1,4 @@
 import axios from 'axios';
-import store from '../redux/store';
-
 const baseURL = process.env.REACT_APP_API_URL;
 
 export const axiosUnauthorizedInstance = axios.create({
@@ -9,10 +7,10 @@ export const axiosUnauthorizedInstance = axios.create({
 });
 
 export function axiosAuthorizedInstance() {
-  const { token } = store.getState().auth;
+  const token = localStorage.getItem('token');
   const http = axios.create({
     baseURL,
-    headers: { Authorization: token }
+    headers: { Authorization: `Bearer ${token}` }
   });
   return http;
 }

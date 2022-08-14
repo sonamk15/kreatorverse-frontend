@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
-import { Button, Checkbox, Form, Input, Row, Col } from "antd";
+import "antd/dist/antd.css";
+import { Button, Form, Input, Row, Col } from "antd";
+import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import "./index.css";
 import { setAuthToken } from "../../redux/ducks/authSlice";
 import { axiosUnauthorizedInstance } from "../../api/axiosInstance";
 import HideEye from "../../assets/hide-eye.png";
@@ -35,7 +38,7 @@ const Login = () => {
           localStorage.setItem("role", role);
           dispatch(setAuthToken({ authToken: token, role }));
           setTimeout(() => {
-            navigate("/verification");
+            navigate("/dashboard/product");
           }, 100);
         } else {
         }
@@ -49,84 +52,98 @@ const Login = () => {
   };
 
   return (
-    <Form
-      name="basic"
-      form={form}
-      initialValues={{ remember: true }}
-      onFinish={(value) => onFinish(value)}
-      autoComplete="off"
-    >
-      <Row justify="center">
-        <Col xl={24} lg={12} md={12} xs={24}>
-          <Form.Item
-            name="email"
-            validateTrigger={"onBlur"}
-            rules={[
-              {
-                required: true,
-                message: "Please input your email!",
-              },
-              ({ getFieldValue }) => ({
-                validator(rule, value) {
-                  if (value && value.trim() && emailRegExp.test(value.trim())) {
-                    return Promise.resolve();
-                  }
-                  if (value) {
-                    return Promise.reject("Email id entered is not valid");
-                  } else {
-                    return Promise.reject();
-                  }
+    <Row justify="center" className="login-div">
+      <Form
+        name="basic"
+        form={form}
+        initialValues={{ remember: true }}
+        onFinish={(value) => onFinish(value)}
+        autoComplete="off"
+        className="login-form"
+      >
+        <Row justify="center">
+          <Col xl={24} lg={12} md={12} xs={24}>
+            <Form.Item
+              className="form-item"
+              name="email"
+              validateTrigger={"onBlur"}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your email!",
                 },
-              }),
-            ]}
-          >
-            <Input autoComplete="off" placeholder="Email address" />
-          </Form.Item>
-        </Col>
-      </Row>
-
-      <Row justify="center">
-        <Col xl={24} lg={12} md={12} xs={24}>
-          <Form.Item
-            name="password"
-            rules={[
-              {
-                required: true,
-                message: "Please enter your password",
-              },
-            ]}
-          >
-            <Input
-              autoComplete={false}
-              type={visible ? "text" : "password"}
-              placeholder="Password"
-              visibilityToggle={false}
-              suffix={
-                <img
-                  i={true}
-                  src={visible ? ShowEye : HideEye}
-                  alt=""
-                  onClick={setVisibility}
-                />
-              }
-            />
-          </Form.Item>
-        </Col>
-      </Row>
-
-      <Form.Item>
-        <Row justify={"center"}>
-          <Button
-            loading={signInLoading}
-            type="primary"
-            htmlType="submit"
-            size={"lg"}
-          >
-            Log In
-          </Button>
+                ({ getFieldValue }) => ({
+                  validator(rule, value) {
+                    if (
+                      value &&
+                      value.trim() &&
+                      emailRegExp.test(value.trim())
+                    ) {
+                      return Promise.resolve();
+                    }
+                    if (value) {
+                      return Promise.reject("Email id entered is not valid");
+                    } else {
+                      return Promise.reject();
+                    }
+                  },
+                }),
+              ]}
+            >
+              <Input
+                autoComplete="off"
+                placeholder="Email"
+                prefix={<UserOutlined />}
+              />
+            </Form.Item>
+          </Col>
         </Row>
-      </Form.Item>
-    </Form>
+
+        <Row justify="center">
+          <Col xl={24} lg={12} md={12} xs={24}>
+            <Form.Item
+              name="password"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter your password",
+                },
+              ]}
+            >
+              <Input
+                autoComplete={false}
+                type={visible ? "text" : "password"}
+                placeholder="Password"
+                visibilityToggle={false}
+                prefix={<LockOutlined />}
+                suffix={
+                  <img
+                    className='visibility-btn'
+                    src={visible ? ShowEye : HideEye}
+                    alt=""
+                    onClick={setVisibility}
+                  />
+                }
+              />
+            </Form.Item>
+          </Col>
+        </Row>
+
+        <Form.Item>
+          <Row justify={"center"}>
+            <Button
+              loading={signInLoading}
+              type="primary"
+              htmlType="submit"
+              size='large'
+              className="login-btn"
+            >
+              Log In
+            </Button>
+          </Row>
+        </Form.Item>
+      </Form>
+    </Row>
   );
 };
 

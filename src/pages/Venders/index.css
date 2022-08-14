@@ -1,0 +1,4 @@
+.list-venders {
+  display: flex;
+  flex-direction: column;
+}
