@@ -1,4 +1,3 @@
-// import React, { lazy, Suspense } from 'react';
 import { Navigate } from "react-router-dom";
 import MainLayout from "./component/MainLayout";
 import AuthLayout from "./component/AuthLayout";
@@ -18,19 +17,6 @@ const routes = (authToken, role) => [
     path: "/login",
     element: <Login />
   },
-  // {
-  //   path: "",
-  //   element: login ? <AuthLayout /> : <Navigate to="/app/dashboard" replace />,
-  //   children: [
-  //     { path: "login", element: <Login /> },
-  //     { path: "*", element: <Navigate to="/404" /> },
-  //   ],
-  // },
-  // {
-  //   path: "/",
-  //   element: <MainLayout />,
-  //   children: [{ path: "/not-found", element: <NotFound /> }],
-  // },
 ];
 
 export default routes;
