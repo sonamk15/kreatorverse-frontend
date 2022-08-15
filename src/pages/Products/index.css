@@ -1,4 +1,5 @@
 .list-product {
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -9,9 +10,9 @@
 }
 
 .dn-btn {
-    color: red;
+    color: gray;
 }
 
 .wr-btn {
-    color: yellow;
+    color: grey;
 }

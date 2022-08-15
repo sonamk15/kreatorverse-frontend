@@ -17,8 +17,6 @@ const Login = () => {
   const [form] = Form.useForm();
   const [visible, setVisible] = useState(false);
   const [signInLoading, setSignInLoading] = useState(false);
-  const emailRegExp =
-    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const setVisibility = () => {
     setVisible(!visible);
   };
@@ -69,25 +67,13 @@ const Login = () => {
               validateTrigger={"onBlur"}
               rules={[
                 {
+                  type:'email',
+                  message:'Email id entered is not valid'
+                },
+                {
                   required: true,
                   message: "Please input your email!",
-                },
-                ({ getFieldValue }) => ({
-                  validator(rule, value) {
-                    if (
-                      value &&
-                      value.trim() &&
-                      emailRegExp.test(value.trim())
-                    ) {
-                      return Promise.resolve();
-                    }
-                    if (value) {
-                      return Promise.reject("Email id entered is not valid");
-                    } else {
-                      return Promise.reject();
-                    }
-                  },
-                }),
+                }
               ]}
             >
               <Input

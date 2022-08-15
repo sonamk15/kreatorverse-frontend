@@ -24,6 +24,15 @@ const Vendors = () => {
       title: 'Address',
       dataIndex: 'address',
     },
+    {
+      title: 'Login In',
+      dataIndex: 'login_at',
+    },
+    {
+      title: 'Last Login ',
+      dataIndex: 'last_login_at',
+    },
+
   ];
   
 

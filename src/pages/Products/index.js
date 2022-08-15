@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { PageHeader, Row } from "antd";
-import { DeleteOutlined, UpCircleOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { axiosAuthorizedInstance } from "../../api/axiosInstance";
 import { setProducts } from "../../redux/ducks/productSlice";
 import AppTable from "../../component/Table";
@@ -112,7 +112,7 @@ const Product = () => {
       dataIndex: "_id",
       render: (_, data) => {
         return (
-          <UpCircleOutlined
+          <EditOutlined
             className="action-btn wr-btn"
             onClick={() => showModal(data)}
           />

@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
 import { Button, Form, Input, PageHeader, Row } from "antd";
 import { axiosAuthorizedInstance } from "../../api/axiosInstance";
 import "./index.css";
 
 const CreateVender = () => {
-  const navigate = useNavigate();
   const [signInLoading, setSignInLoading] = useState(false);
   const layout = {
     labelCol: {
@@ -25,7 +23,7 @@ const CreateVender = () => {
       address: values.address,
       role: "vender",
     };
-    setSignInLoading(false);
+    setSignInLoading(true);
 
     axiosAuthorizedInstance()
       .post("super-admin/create-vender", payload)
@@ -73,6 +71,10 @@ const CreateVender = () => {
             name="email"
             rules={[
               {
+                type:'email',
+                message:'Email id entered is not valid'
+              },
+              {
                 required: true,
                 message: "Please enter vender email",
               },
@@ -90,7 +92,7 @@ const CreateVender = () => {
               },
             ]}
           >
-            <Input placeholder="Password" />
+            <Input placeholder="Password" minLength={8} maxLength={12} />
           </Form.Item>
 
           <Form.Item
@@ -102,7 +104,7 @@ const CreateVender = () => {
               },
             ]}
           >
-            <Input placeholder="Phone Number" />
+            <Input placeholder="Phone Number" minLength={10} maxLength={10} />
           </Form.Item>
 
           <Form.Item

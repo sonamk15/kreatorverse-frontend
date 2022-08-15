@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
 import { Button, Form, Input, PageHeader, Row } from "antd";
 import { axiosAuthorizedInstance } from "../../api/axiosInstance";
 import "./index.css";
 
 const CreateProduct = () => {
-  const navigate = useNavigate();
   const [signInLoading, setSignInLoading] = useState(false);
   const layout = {
     labelCol: {
@@ -22,8 +20,7 @@ const CreateProduct = () => {
       price: values.price,
       category: values.category,
     };
-    setSignInLoading(false);
-
+    setSignInLoading(true);
     axiosAuthorizedInstance()
       .post("vender/product", payload)
       .then((response) => {

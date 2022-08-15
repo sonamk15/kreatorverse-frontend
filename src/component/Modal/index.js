@@ -1,5 +1,5 @@
 import { Modal } from "antd";
-import React, { useEffect } from "react";
+import React from "react";
 import { Button, Form, Input, PageHeader, Row } from "antd";
 
 const AppModal = ({
@@ -17,13 +17,13 @@ const AppModal = ({
   return (
     <>
       <Modal
-        title="Basic Modal"
+        title="Update Product"
         visible={isModalVisible}
         onCancel={handleCancel}
+        footer={false}
       >
         <div>
-          <PageHeader title="Create Product" />
-          <Row justify="center">
+          <Row style={{display:'flow-root'}}>
             <Form
               name="basic"
               onFinish={(value) => onFinish(value)}
@@ -32,6 +32,7 @@ const AppModal = ({
             >
               <Form.Item
                 name="name"
+                label="Name"
                 rules={[
                   {
                     required: true,
@@ -44,6 +45,7 @@ const AppModal = ({
 
               <Form.Item
                 name="price"
+                label="Price"
                 rules={[
                   {
                     required: true,
@@ -55,6 +57,7 @@ const AppModal = ({
               </Form.Item>
 
               <Form.Item
+                label="Category"
                 name="category"
                 rules={[
                   {
