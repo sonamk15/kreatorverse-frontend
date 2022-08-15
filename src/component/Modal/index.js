@@ -26,6 +26,7 @@ const AppModal = ({
           <Row style={{display:'flow-root'}}>
             <Form
               name="basic"
+              layout="vertical"
               onFinish={(value) => onFinish(value)}
               autoComplete="off"
               form={form}
